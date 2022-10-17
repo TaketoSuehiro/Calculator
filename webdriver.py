@@ -10,11 +10,11 @@ link = 'http://kamake.co.jp/'
 driver.get(link) #サイトを開く
 
 site_url = 'https://notify-api.line.me/api/notify' #ここからアクセス権限の取得
-access_token = 'N0Kky4q1FF7UsVRml4z9xwmslEkFMoPuh7mxPg7JOxQ'
-line_Notify_headers = {'Authorization': 'Bearer' + ' ' + access_token} #Authorizationというデータ名を、Bearer+''+access_tokenというデ―タ内容
+access_token = '＜アクセス・トークン＞'
+line_Notify_headers = {'Authorization': 'Bearer' + ' ' + access_token}
 
 for news_elem in driver.find_elements_by_xpath('//h4/a'):
     elem_title = news_elem.text
-    line_message = 'ニュースがありました。\n' + elem_title + '\n' + news_elem.get_attribute('href') #'\n'で改行　　lineに送信したいメッセージを変数に代入
+    line_message = 'ニュースがありました。\n' + elem_title + '\n' + news_elem.get_attribute('href') #lineに送信したいメッセージを変数に代入
     payload = {'message': line_message} #メッセージ情報を生成
     requests.post(url = site_url, headers = line_Notify_headers, params = payload) #urlは送信先サイトのurl、headersはアクセス権限情報、paramsはメッセージ情報
